@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: msa-order-deploy
+  labels:
+    app: order
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: order
+  template:
+    metadata:
+      labels:
+        app: order
+    spec:
+      containers:
+      - name: msa-order-api
+        image: 327804651383.dkr.ecr.ap-northeast-2.amazonaws.com/msa_order_service:0.1
+        ports:
+        - containerPort: 8003
